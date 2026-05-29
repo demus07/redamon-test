@@ -1,0 +1,40 @@
+name: Checkmarx Scan
+
+  on:
+    push:
+      branches: [main]
+    pull_request:
+      branches: [main]
+
+  jobs:
+    scan:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+
+        - name: Checkmarx AST Scan
+          uses: Checkmarx/ast-github-action@2.3.36
+          with:
+            base_uri: ${{ secrets.CX_BASE_URI }}
+            cx_tenant: ${{ secrets.CX_TENANT }}
+            client_id: ${{ secrets.CX_CLIENT_ID }}
+            client_secret: ${{ secrets.CX_CLIENT_SECRET }}
+            project_name: ${{ github.repository }}
+            branch: ${{ github.ref_name }}
+            output_path: cx-results
+            output_formats: "sarif"
+            # optionally also export json: output_formats: "sarif,json"
+
+        - name: Upload SARIF to GitHub Code Scanning
+          uses: github/codeql-action/upload-sarif@v3
+          if: always()
+          with:
+            sarif_file: cx-results/cx_result.sarif
+
+        - name: Upload SARIF artifact
+          uses: actions/upload-artifact@v4
+          if: always()
+          with:
+            name: checkmarx-sarif
+            path: cx-results/cx_result.sarif
+            retention-days: 30
