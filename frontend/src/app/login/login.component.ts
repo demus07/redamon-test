@@ -60,8 +60,8 @@ export class LoginComponent implements OnInit {
   public clientId = '1005568560502-6hm16lef8oh46hr2d98vf2ohlnj4nfhq.apps.googleusercontent.com'
   public oauthUnavailable = true
   public redirectUri = ''
-  public testingUsername = 'testing@juice-sh.op'
-  public testingPassword = 'IamUsedForTesting'
+  public testingUsername = ''
+  public testingPassword = ''
 
   ngOnInit (): void {
     const email = localStorage.getItem('email')
@@ -87,6 +87,11 @@ export class LoginComponent implements OnInit {
             this.oauthUnavailable = true
             console.log(this.redirectUri + ' is not an authorized redirect URI for this application.')
           }
+        }
+        if (config?.application?.testCredentials) {
+          const domain = config.application.domain
+          this.testingUsername = config.application.testCredentials.testing.email + '@' + domain
+          this.testingPassword = config.application.testCredentials.testing.password
         }
       },
       error: (err) => { console.log(err) }

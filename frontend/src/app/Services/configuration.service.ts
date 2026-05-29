@@ -76,6 +76,15 @@ export interface Config {
       clientId: string
       authorizedRedirects: any[]
     }
+    testCredentials: {
+      admin: { email: string; password: string }
+      support: { email: string; password: string }
+      rapper: { email: string; password: string }
+      amy: { email: string; password: string }
+      dlpPasswordSpraying: { email: string; password: string }
+      oauth: { email: string; password: string }
+      testing: { email: string; password: string }
+    }
   }
   challenges: {
     showSolvedNotifications: boolean

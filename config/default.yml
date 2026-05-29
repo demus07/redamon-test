@@ -77,6 +77,28 @@ application:
       - { uri: 'http://192.168.99.100:4200', proxy: 'https://localmac.owasp-juice.shop' }
       - { uri: 'http://penguin.termina.linux.test:3000', proxy: 'https://localchromeos.owasp-juice.shop' }
       - { uri: 'http://penguin.termina.linux.test:4200', proxy: 'https://localchromeos.owasp-juice.shop' }
+  testCredentials:
+    admin:
+      email: 'admin'
+      password: 'admin123'
+    support:
+      email: 'support'
+      password: 'J6aVjTgOpRs@?5l!Zkq2AYnCE@RF$P'
+    rapper:
+      email: 'mc.safesearch'
+      password: 'Mr. N00dles'
+    amy:
+      email: 'amy'
+      password: 'K1f.....................'
+    dlpPasswordSpraying:
+      email: 'J12934'
+      password: '0Y8rMnww$*9VFYE§59-!Fg1L6t&6lB'
+    oauth:
+      email: 'bjoern.kimminich@gmail.com'
+      password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+    testing:
+      email: 'testing'
+      password: 'IamUsedForTesting'
 challenges:
   showSolvedNotifications: true
   showHints: true
